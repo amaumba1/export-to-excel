@@ -1,0 +1,16 @@
+// Sample data came from firebase
+
+{
+    "users": {
+        "user-1": {
+            "age": 78,
+            "firstname": "Jay",
+            "lastname": "Smith"
+        },
+        "user-2": {
+            "age": 54,
+            "firstname": "Tom",
+            "lastname": "Cruise"
+        }
+    }
+}
