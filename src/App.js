@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactTable from 'react-table'; 
 import 'react-table/react-table.css'; 
+import firebase from './config';
 
 import './App.css';
 
@@ -8,19 +9,22 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      users: [
-        {
-          firstname: 'Allen',
-          lastname: 'John',
-          age: '65'
-        },
-        {
-          firstname: 'Smith',
-          lastname: 'David',
-          age: '53'
-        }
-      ]
+      users: []
     }
+  }
+  componentWillMount() {
+    this.getUsers()
+  }
+  getUsers() {
+    let users = []
+    firebase.database().ref(`users/`).once('value', snapshot => {
+      snapshot.forEach(snap => {
+        users.push(snap.val())
+      })
+      this.setState({
+        users
+      })
+    })
   }
   render() {
     const userColumns = [
